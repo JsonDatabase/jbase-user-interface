@@ -75,6 +75,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  jbase_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: ef73589a80679b979189b1adc64f52821b4f466e
+      url: "https://github.com/JsonDatabase/jbase-package"
+    source: git
+    version: "0.0.1"
   js:
     dependency: transitive
     description:
@@ -186,3 +195,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.0 <4.0.0"
+  flutter: ">=1.17.0"

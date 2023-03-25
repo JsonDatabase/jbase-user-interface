@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          const SizedBox(width: 10),
           Expanded(
             child: Card(
               child: Column(

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jbase_user_interface/src/interface/screen/home_screen.dart';
+import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
 
 class JBase extends StatelessWidget {
   const JBase({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return BlocProvider(
+      lazy: false,
+      create: (context) => ControlPlaneCubit(),
+      child: MaterialApp(
         title: 'JBase',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -150,6 +155,8 @@ class JBase extends StatelessWidget {
                 )),
             useMaterial3: false,
             visualDensity: VisualDensity.compact),
-        home: HomeScreen());
+        home: const HomeScreen(),
+      ),
+    );
   }
 }

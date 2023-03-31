@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jbase_package/jbase_package.dart';
 
@@ -13,4 +14,13 @@ class ControlPlaneCubit extends Cubit<ControlPlane> {
     state.removeEntity(entityName);
     emit(state);
   }
+
+  @nonVirtual
+  @override
+  bool operator ==(Object other) {
+    return false;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }

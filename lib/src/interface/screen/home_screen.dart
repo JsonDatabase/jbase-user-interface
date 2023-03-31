@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jbase_package/jbase_package.dart';
 import 'package:jbase_user_interface/src/interface/component/form/LabelCheckBox.dart';
+import 'package:jbase_user_interface/src/interface/component/modal/control_plane_setting_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/create_entity_modal.dart';
 import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -16,10 +17,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Entity? _selectedEntity;
-
-  void _showCreateEntityModal() {
-    showDialog(
+  Future<void> _showCreateEntityModal() async {
+    await showDialog(
         context: context, builder: (context) => const CreateEntityModal());
+    setState(() {});
+  }
+
+  Future<void> _showControlPlaneSettingModal() async {
+    await showDialog(
+        context: context,
+        builder: (context) => const ControlPlaneSettingModal());
+    setState(() {});
   }
 
   void _openGithubLink() {
@@ -34,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const Drawer(),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -44,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const FaIcon(FontAwesomeIcons.github),
             onPressed: _openGithubLink,
           ),
+          IconButton(
+              onPressed: _showControlPlaneSettingModal,
+              icon: FaIcon(FontAwesomeIcons.gear))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -57,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SizedBox(
               width: 350,
               child: BlocBuilder<ControlPlaneCubit, ControlPlane>(
-                buildWhen: (previous, current) => true,
                 builder: (context, state) {
                   final bool noEntities = state.entities.isEmpty;
                   if (noEntities) {
@@ -156,70 +167,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-          ),
-          const SizedBox(width: 10),
-          SizedBox(
-            width: 400,
-            child: Card(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                child: Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Database Management System",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        LabelCheckBox(
-                            labelText: 'MySQL',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Postgres',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Microsoft SQL Server',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Oracle',
-                            value: false,
-                            onChanged: (value) {}),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Database Management System",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        LabelCheckBox(
-                            labelText: 'MySQL',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Postgres',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Microsoft SQL Server',
-                            value: false,
-                            onChanged: (value) {}),
-                        LabelCheckBox(
-                            labelText: 'Oracle',
-                            value: false,
-                            onChanged: (value) {}),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
           ),
         ]),
       ),

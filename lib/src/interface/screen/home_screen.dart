@@ -125,6 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? Container()
                 : Card(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           padding: const EdgeInsets.all(8),
@@ -164,6 +166,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           ),
                         ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Text('Entity DDL'),
+                              Text(
+                                context
+                                    .read<ControlPlaneCubit>()
+                                    .state
+                                    .generateIndividualDDL(_selectedEntity!),
+                                style: const TextStyle(
+                                    fontFamily: 'monospace', fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jbase_package/jbase_package.dart';
-import 'package:jbase_user_interface/src/interface/component/form/LabelCheckBox.dart';
-import 'package:jbase_user_interface/src/interface/component/form/textbox.dart';
+import 'package:jbase_user_interface/src/interface/component/form/label_check_box.dart';
 import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
+import 'package:jbase_user_interface/src/interface/component/form/label_text_box.dart';
 
 class ControlPlaneSettingModal extends StatefulWidget {
   const ControlPlaneSettingModal({Key? key}) : super(key: key);
@@ -51,12 +51,30 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Settings',
+            Row(
+              children: [
+                Text('Settings',
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .titleLarge!
+                        .copyWith(
+                            color: Theme.of(context).colorScheme.primary)),
+                const Spacer(),
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.close))
+              ],
+            ),
+            const Divider(),
+            const SizedBox(height: 10),
+            Text('DDL Generation Strategy',
                 style: Theme.of(context)
                     .primaryTextTheme
-                    .titleLarge!
+                    .titleMedium!
                     .copyWith(color: Theme.of(context).colorScheme.primary)),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             const Text(
               "Database Management System",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -160,6 +178,26 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
               ],
             ),
             const SizedBox(height: 10),
+            Row(children: [
+              LabelCheckBox(
+                  labelText: 'MySQL',
+                  value: databaseType == DatabaseType.mysql,
+                  onChanged: (value) {
+                    setState(() {
+                      databaseType = DatabaseType.mysql;
+                    });
+                  }),
+              const SizedBox(width: 10),
+              LabelCheckBox(
+                  labelText: 'Postgres',
+                  value: databaseType == DatabaseType.postgresql,
+                  onChanged: (value) {
+                    setState(() {
+                      databaseType = DatabaseType.postgresql;
+                    });
+                  }),
+            ]),
+            const SizedBox(height: 10),
             const Text(
               "Primary Key Size Strategy",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -176,6 +214,97 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
                         primaryKeySizeStrategy = PrimaryKeySizeStrategy.auto;
                       });
                     }),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text('Database Connection',
+                style: Theme.of(context)
+                    .primaryTextTheme
+                    .titleMedium!
+                    .copyWith(color: Theme.of(context).colorScheme.primary)),
+            const SizedBox(height: 5),
+            Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: LabelTextBox(
+                    labelText: 'Host',
+                    controller: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: LabelTextBox(
+                    labelText: 'Port',
+                    controller: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: LabelTextBox(
+                    labelText: 'Username',
+                    controller: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: LabelTextBox(
+                    labelText: 'Password',
+                    controller: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: LabelTextBox(
+                    labelText: 'Database',
+                    controller: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
+            const Text(
+              "Credential Storage",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                LabelCheckBox(
+                    labelText: 'In-Memory',
+                    value: false,
+                    onChanged: (value) {}),
+                const SizedBox(width: 10),
+                LabelCheckBox(
+                    labelText: 'Secure Local Storage',
+                    value: false,
+                    onChanged: (value) {}),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text('Other Settings',
+                style: Theme.of(context)
+                    .primaryTextTheme
+                    .titleMedium!
+                    .copyWith(color: Theme.of(context).colorScheme.primary)),
+            const SizedBox(height: 5),
+            const Text(
+              "Project File",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Import'),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Export'),
+                ),
               ],
             ),
             Row(

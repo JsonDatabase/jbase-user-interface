@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jbase_user_interface/src/interface/component/form/textbox.dart';
+import 'package:jbase_user_interface/src/interface/component/form/label_text_box.dart';
 import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
 
 class CreateEntityModal extends StatefulWidget {
@@ -37,10 +37,10 @@ class _CreateEntityModalState extends State<CreateEntityModal> {
                     .titleLarge!
                     .copyWith(color: Theme.of(context).colorScheme.primary)),
             const SizedBox(height: 10),
-            Textbox(
+            LabelTextBox(
                 labelText: 'Entity Name', controller: _entityNameController),
             const SizedBox(height: 10),
-            Textbox(
+            LabelTextBox(
                 labelText: 'Entity JSON',
                 controller: _entityJSONController,
                 numberOfLines: 15),

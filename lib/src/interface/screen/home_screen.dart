@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jbase_package/jbase_package.dart';
-import 'package:jbase_user_interface/src/interface/component/form/LabelCheckBox.dart';
+import 'package:jbase_user_interface/src/interface/component/form/label_check_box.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/control_plane_setting_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/create_entity_modal.dart';
 import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
               onPressed: _showControlPlaneSettingModal,
-              icon: FaIcon(FontAwesomeIcons.gear))
+              icon: const FaIcon(FontAwesomeIcons.gear))
         ],
       ),
       floatingActionButton: FloatingActionButton(

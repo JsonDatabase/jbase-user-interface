@@ -19,6 +19,19 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
   PrimaryKeyIncrementStrategy primaryKeyIncrementStrategy =
       PrimaryKeyIncrementStrategy.auto;
   PrimaryKeySizeStrategy primaryKeySizeStrategy = PrimaryKeySizeStrategy.auto;
+  DatabaseCredentialStorage databaseCredentialStorage =
+      DatabaseCredentialStorage.inMemory;
+  final TextEditingController _dbHostTextEditingController =
+      TextEditingController();
+  final TextEditingController _dbPortTextEditingController =
+      TextEditingController();
+  final TextEditingController _dbNameTextEditingController =
+      TextEditingController();
+  final TextEditingController _dbUsernameTextEditingController =
+      TextEditingController();
+  final TextEditingController _dbPasswordTextEditingController =
+      TextEditingController();
+
   @override
   void initState() {
     ControlPlaneSetting controlPlaneSetting =
@@ -28,6 +41,18 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
     primaryKeyIncrementStrategy =
         controlPlaneSetting.primaryKeyIncrementStrategy;
     primaryKeySizeStrategy = controlPlaneSetting.primaryKeySizeStrategy;
+    databaseCredentialStorage = controlPlaneSetting.databaseCredentialStorage;
+    _dbHostTextEditingController.text =
+        controlPlaneSetting.databaseCredential.host;
+    _dbPortTextEditingController.text =
+        controlPlaneSetting.databaseCredential.port;
+    _dbNameTextEditingController.text =
+        controlPlaneSetting.databaseCredential.database;
+    _dbUsernameTextEditingController.text =
+        controlPlaneSetting.databaseCredential.username;
+    _dbPasswordTextEditingController.text =
+        controlPlaneSetting.databaseCredential.password;
+
     super.initState();
   }
 
@@ -36,7 +61,14 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
         databaseType: databaseType,
         primaryKeyStrategy: primaryKeyStrategy,
         primaryKeyIncrementStrategy: primaryKeyIncrementStrategy,
-        primaryKeySizeStrategy: primaryKeySizeStrategy);
+        primaryKeySizeStrategy: primaryKeySizeStrategy,
+        databaseCredentialStorage: databaseCredentialStorage,
+        databaseCredential: DatabaseCredential(
+            host: _dbHostTextEditingController.text,
+            port: _dbPortTextEditingController.text,
+            database: _dbNameTextEditingController.text,
+            username: _dbUsernameTextEditingController.text,
+            password: _dbPasswordTextEditingController.text));
     context.read<ControlPlaneCubit>().state.setSetting(controlPlaneSetting);
     Navigator.of(context).pop();
   }
@@ -178,26 +210,6 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
               ],
             ),
             const SizedBox(height: 10),
-            Row(children: [
-              LabelCheckBox(
-                  labelText: 'MySQL',
-                  value: databaseType == DatabaseType.mysql,
-                  onChanged: (value) {
-                    setState(() {
-                      databaseType = DatabaseType.mysql;
-                    });
-                  }),
-              const SizedBox(width: 10),
-              LabelCheckBox(
-                  labelText: 'Postgres',
-                  value: databaseType == DatabaseType.postgresql,
-                  onChanged: (value) {
-                    setState(() {
-                      databaseType = DatabaseType.postgresql;
-                    });
-                  }),
-            ]),
-            const SizedBox(height: 10),
             const Text(
               "Primary Key Size Strategy",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -229,14 +241,14 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
                   flex: 3,
                   child: LabelTextBox(
                     labelText: 'Host',
-                    controller: TextEditingController(),
+                    controller: _dbHostTextEditingController,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: LabelTextBox(
                     labelText: 'Port',
-                    controller: TextEditingController(),
+                    controller: _dbPortTextEditingController,
                   ),
                 ),
               ],
@@ -247,21 +259,21 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
                 Expanded(
                   child: LabelTextBox(
                     labelText: 'Username',
-                    controller: TextEditingController(),
+                    controller: _dbUsernameTextEditingController,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: LabelTextBox(
                     labelText: 'Password',
-                    controller: TextEditingController(),
+                    controller: _dbPasswordTextEditingController,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: LabelTextBox(
                     labelText: 'Database',
-                    controller: TextEditingController(),
+                    controller: _dbNameTextEditingController,
                   ),
                 ),
               ],
@@ -275,13 +287,21 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
               children: [
                 LabelCheckBox(
                     labelText: 'In-Memory',
-                    value: false,
-                    onChanged: (value) {}),
+                    value: databaseCredentialStorage ==
+                        DatabaseCredentialStorage.inMemory,
+                    onChanged: (value) => setState(() {
+                          databaseCredentialStorage =
+                              DatabaseCredentialStorage.inMemory;
+                        })),
                 const SizedBox(width: 10),
                 LabelCheckBox(
                     labelText: 'Secure Local Storage',
-                    value: false,
-                    onChanged: (value) {}),
+                    value: databaseCredentialStorage ==
+                        DatabaseCredentialStorage.secureLocalStorage,
+                    onChanged: (value) => setState(() {
+                          databaseCredentialStorage =
+                              DatabaseCredentialStorage.secureLocalStorage;
+                        })),
               ],
             ),
             const SizedBox(height: 10),

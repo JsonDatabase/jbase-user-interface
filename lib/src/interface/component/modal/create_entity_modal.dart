@@ -25,7 +25,8 @@ class _CreateEntityModalState extends State<CreateEntityModal> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        width: 500,
+        width: 700,
+        height: 500,
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,

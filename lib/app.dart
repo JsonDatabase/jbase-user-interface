@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jbase_user_interface/src/interface/screen/home_screen.dart';
-import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
+import 'package:jbase_user_interface/src/state_management/control_plane_cubit.dart';
 
 class JBase extends StatelessWidget {
   const JBase({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jbase_package/jbase_package.dart';
 import 'package:jbase_user_interface/src/interface/component/form/label_check_box.dart';
-import 'package:jbase_user_interface/src/state_managment/control_plane_cubit.dart';
+import 'package:jbase_user_interface/src/state_management/control_plane_cubit.dart';
 import 'package:jbase_user_interface/src/interface/component/form/label_text_box.dart';
 
 class ControlPlaneSettingModal extends StatefulWidget {

@@ -165,7 +165,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: c3dfc407f49abd033b66d48d61616ed508df6c69
+      resolved-ref: "36f104fd38942430c31a626a26331a93e4c8832d"
       url: "https://github.com/JsonDatabase/jbase-package"
     source: git
     version: "0.0.1"

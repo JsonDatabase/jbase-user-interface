@@ -4,11 +4,13 @@ class LabelTextBox extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
   final int numberOfLines;
+  final bool enabled;
   const LabelTextBox(
       {super.key,
       required this.labelText,
       required this.controller,
-      this.numberOfLines = 1});
+      this.numberOfLines = 1,
+      this.enabled = true});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class LabelTextBox extends StatelessWidget {
         alignLabelWithHint: true,
         border: const OutlineInputBorder(),
         labelText: labelText,
+        enabled: enabled,
       ),
     );
   }

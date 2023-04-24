@@ -6,6 +6,7 @@ import 'package:jbase_user_interface/src/interface/component/modal/control_plane
 import 'package:jbase_user_interface/src/interface/component/modal/create_entity_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/edit_entity_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/edit_entity_property_modal.dart';
+import 'package:jbase_user_interface/src/interface/component/modal/view_ddl_modal.dart';
 import 'package:jbase_user_interface/src/state_management/control_plane_cubit.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -28,6 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
     await showDialog(
         context: context,
         builder: (context) => EditEntityModal(entity: _selectedEntity!));
+    setState(() {});
+  }
+
+  Future<void> _showViewDDLModal() async {
+    await showDialog(
+        context: context,
+        builder: (context) => ViewDDLModal(entity: _selectedEntity!));
     setState(() {});
   }
 
@@ -184,6 +192,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: const Text("Edit",
                                           style: TextStyle(
                                             color: Colors.black,
+                                          ))),
+                                  const SizedBox(width: 10),
+                                  ElevatedButton(
+                                      onPressed: _showViewDDLModal,
+                                      child: const Text("DDL",
+                                          style: TextStyle(
+                                            color: Colors.white,
                                           ))),
                                 ],
                               ),

@@ -147,13 +147,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                       )),
-                      Row(
-                        children: [
-                          TextButton(
-                            onPressed: _showViewFullDDLModal,
-                            child: const Text('Copy Full DDL'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: _showViewFullDDLModal,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Center(
+                                      child: const Text('View Full DDL'))),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   );

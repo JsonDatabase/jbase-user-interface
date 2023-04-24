@@ -8,6 +8,7 @@ import 'package:jbase_user_interface/src/interface/component/modal/create_entity
 import 'package:jbase_user_interface/src/interface/component/modal/edit_entity_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/edit_entity_property_modal.dart';
 import 'package:jbase_user_interface/src/interface/component/modal/view_ddl_modal.dart';
+import 'package:jbase_user_interface/src/interface/component/modal/view_full_ddl_modal.dart';
 import 'package:jbase_user_interface/src/state_management/control_plane_cubit.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -37,6 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
     await showDialog(
         context: context,
         builder: (context) => ViewDDLModal(entity: _selectedEntity!));
+    setState(() {});
+  }
+
+  Future<void> _showViewFullDDLModal() async {
+    await showDialog(
+        context: context, builder: (context) => ViewFullDDLModal());
     setState(() {});
   }
 
@@ -143,13 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: [
                           TextButton(
-                            onPressed: () {
-                              Clipboard.setData(new ClipboardData(
-                                  text: context
-                                      .read<ControlPlaneCubit>()
-                                      .state
-                                      .generateDDL()));
-                            },
+                            onPressed: _showViewFullDDLModal,
                             child: const Text('Copy Full DDL'),
                           ),
                         ],

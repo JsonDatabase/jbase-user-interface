@@ -60,6 +60,12 @@ class _ViewFullDDLModalState extends State<ViewFullDDLModal> {
                       },
                       child: const Text('Copy DDL'),
                     ),
+                    TextButton(
+                      onPressed: () {
+                        context.read<ControlPlaneCubit>().state.executeDDL();
+                      },
+                      child: const Text('Execute DDL'),
+                    ),
                   ],
                 ),
                 Row(

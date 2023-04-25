@@ -130,25 +130,7 @@ class _ControlPlaneSettingModalState extends State<ControlPlaneSettingModal> {
                       setState(() {
                         databaseType = DatabaseType.postgresql;
                       });
-                    }),
-                const SizedBox(width: 10),
-                LabelCheckBox(
-                    labelText: 'Microsoft SQL Server',
-                    value: databaseType == DatabaseType.sqlserver,
-                    onChanged: (value) {
-                      setState(() {
-                        databaseType = DatabaseType.sqlserver;
-                      });
-                    }),
-                const SizedBox(width: 10),
-                LabelCheckBox(
-                    labelText: 'Oracle',
-                    value: databaseType == DatabaseType.oracle,
-                    onChanged: (value) {
-                      setState(() {
-                        databaseType = DatabaseType.oracle;
-                      });
-                    }),
+                    })
               ],
             ),
             const SizedBox(height: 10),

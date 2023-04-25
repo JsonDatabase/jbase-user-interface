@@ -165,7 +165,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3b87b2c46187df5dc08b2d8d2f1147d8503a4518"
+      resolved-ref: e1f0e74d236b960993fa4b4efffbd1c6b6e04d40
       url: "https://github.com/JsonDatabase/jbase-package"
     source: git
     version: "0.0.1"
@@ -471,5 +471,5 @@ packages:
     source: hosted
     version: "1.0.0"
 sdks:
-  dart: ">=2.19.0 <3.0.0"
+  dart: ">=2.19.0 <3.0.2"
   flutter: ">=3.3.0"

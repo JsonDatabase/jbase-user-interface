@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jbase_package/jbase_package.dart';
-import 'package:jbase_user_interface/src/interface/component/form/label_dropdown_box.dart';
-import 'package:jbase_user_interface/src/interface/component/form/label_text_box.dart';
 import 'package:jbase_user_interface/src/state_management/control_plane_cubit.dart';
 
 class ViewFullDDLModal extends StatefulWidget {
@@ -52,7 +49,7 @@ class _ViewFullDDLModalState extends State<ViewFullDDLModal> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Clipboard.setData(new ClipboardData(
+                        Clipboard.setData(ClipboardData(
                             text: context
                                 .read<ControlPlaneCubit>()
                                 .state
